@@ -1,13 +1,13 @@
 # version 1.6.1-1
 # docker-version 1.8.2
-FROM ubuntu:15.04
-MAINTAINER Jim Myhrberg "contact@jimeh.me"
+FROM docker.io/centos
+MAINTAINER Jerome Sheed "jerome@sheed.co.za"
 
 ENV ZNC_VERSION 1.6.1
 
-RUN apt-get update \
-    && apt-get install -y sudo wget build-essential libssl-dev libperl-dev \
-               pkg-config swig3.0 libicu-dev \
+RUN yum update -y \
+    && yum install gcc openssl openssl-devel wget sudo -y \
+    && yum group install "Development Tools" -y \
     && mkdir -p /src \
     && cd /src \
     && wget "http://znc.in/releases/archive/znc-${ZNC_VERSION}.tar.gz" \
@@ -16,9 +16,7 @@ RUN apt-get update \
     && ./configure \
     && make \
     && make install \
-    && apt-get remove -y wget \
-    && apt-get autoremove -y \
-    && apt-get clean \
+    && yum clean all \
     && rm -rf /src* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN useradd znc

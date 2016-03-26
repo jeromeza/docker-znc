@@ -1,5 +1,8 @@
 # ZNC for Docker
 
+Centos 7 fork for docker-znc
+Forked from https://github.com/jimeh/docker-znc by Jerome Sheed
+
 Run the [ZNC][] IRC Bouncer in a Docker container.
 
 [ZNC]: http://znc.in
@@ -94,4 +97,4 @@ simply run in the background.
 1. Follow Prerequisites above.
 2. Checkout source: `git clone https://github.com/jimeh/docker-znc.git && cd docker-znc`
 3. Build container: `sudo docker build -t $(whoami)/znc .`
-4. Run container: `sudo docker run -d -p 6667 -v $HOME/.znc:/znc-data $(whoami)/znc`
+4. Run container: `sudo docker run -d -p 6667 -vt $HOME/.znc:/znc-data $(whoami)/znc`
